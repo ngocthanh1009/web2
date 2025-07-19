@@ -434,16 +434,16 @@ router.post('/cash_order', async (req, res) => {
         await orderDetail.save();
       }
 
-      const detail = {
-        greeting: order.name,
-        firstline: 'Products: ' + productNum,
-        body: 'Total Money: ' + numberFormat(totalMoney),
-        lastline: 'Payment status: ' + order.payment_status,
-        url: 'https://toystores.onrender.com/',
-      };
-      content = 'Payment successful'
-      // gửi mail sau khi thanh toán
-      sendInformationEmail(order.email, detail, content);
+      // const detail = {
+      //   greeting: order.name,
+      //   firstline: 'Products: ' + productNum,
+      //   body: 'Total Money: ' + numberFormat(totalMoney),
+      //   lastline: 'Payment status: ' + order.payment_status,
+      //   url: 'https://toystores.onrender.com/',
+      // };
+      // content = 'Payment successful'
+      // // gửi mail sau khi thanh toán
+      // sendInformationEmail(order.email, detail, content);
       // Xóa giỏ hàng của người dùng sau khi đã đặt hàng
       await Cart.deleteMany({ user_id: user.id });
       req.session.message = {

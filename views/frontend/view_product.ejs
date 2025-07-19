@@ -37,24 +37,21 @@
                         <%= product.title%>
                     </h5>
 
-                    <% if(product.discount_price !=0) {%>
+                    <% if(product.discount_price > 0) { %>
                         <h6 style="color:red;">
                             Giảm giá</br>
                             <%= numberFormat(product.discount_price)%>
                         </h6>
-
                         <h6 style="text-decoration:line-through;">
                             Giá gốc</br>
                             <%= numberFormat(product.price)%>
                         </h6>
-                        <% } else {%>
-
-                            <h6>
-                                Giá</br>
-                                <%= numberFormat(product.price)%>
-                            </h6>
-
-                            <% } %>
+                    <% } else { %>
+                        <h6>
+                            Giá</br>
+                            <%= numberFormat(product.price)%>
+                        </h6>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -78,7 +75,7 @@
 
         if (searchVal.length > 0) {
             productArea.style.display = 'none';
-            fetch(`/searchProductAjax?search=${encodeURIComponent(searchVal)}`)
+            fetch(/searchProductAjax?search=${encodeURIComponent(searchVal)})
                 .then(response => response.json())
                 .then(data => {
                     var html = '';
@@ -107,12 +104,11 @@
                                   ${product.title}
                                   </h5>
  
-                                  ${product.discount_price != 0 ? `
+                                  ${product.discount_price > 0 ? `
                                   <h6 style="color:red;">
                                   Giảm giá</br>
                                   ${numberFormat(product.discount_price)}
                                   </h6>
-
                                   <h6 style="text-decoration:line-through;">
                                   Giá gốc</br>
                                   ${numberFormat(product.price)}
@@ -126,7 +122,7 @@
                             </div>
                             </div>`;
                     });
-                    result = `<div class="row">${html}</div>`
+                    result = <div class="row">${html}</div>
                     searchResultsArea.innerHTML = result;
                     searchResultsArea.style.display = 'block';
                 });
