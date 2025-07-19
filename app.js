@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 
 // 2. config 'mongoose' module
 var mongoose = require('mongoose');
-var uri = "mongodb+srv://adngocnguyen071:ngocnguyen123@web1.2okfjr2.mongodb.net/test";
+var uri = "mongodb+srv://long3907:mwTxAR6YzyyxYaIT@demodb.kndwxsk.mongodb.net/trendoraShop";
 mongoose.set('strictQuery', true); //ignore mongoose warning
 mongoose.connect(uri)
   .then(() => console.log('Connect success'))
