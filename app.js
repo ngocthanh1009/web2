@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 
 // 2. config 'mongoose' module
 var mongoose = require('mongoose');
-var uri = "mongodb+srv://adngocnguyen071:ngocnguyen123@web2.aianrqn.mongodb.net/test";
+var uri = "mongodb+srv://thanhteo1009:thanhteo1009@webbanhang.rg6vcmo.mongodb.net/?retryWrites=true&w=majority&appName=webbanhang";
 mongoose.set('strictQuery', true); //ignore mongoose warning
 mongoose.connect(uri)
   .then(() => console.log('Connect success'))
@@ -80,10 +80,12 @@ app.use(function(err, req, res, next) {
 });
 
 //4. config port (for cloud deployment)
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4001;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server is running on port ${PORT}`);
 });
 
 
 module.exports = app;
+
+//ửi file nàn
