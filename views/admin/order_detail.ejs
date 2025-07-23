@@ -2,88 +2,137 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+    <!-- Meta + CSS -->
     <%- include('css') %>
-    <% path='order'%>
+    <% path='order' %>
+    <style>
+        .div_center {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .table-bordered {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .table td, .table th {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+
+        img {
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .btn-back {
+            margin-top: 15px;
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff !important;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container-scroller">
-        <!-- partial:partials/_sidebar.html -->
+        <!-- Sidebar -->
         <%- include('siderbar') %>
-        <!-- header -->
+        <!-- Header -->
         <%- include('header') %>
-        <!-- body -->
+
+        <!-- Main Body -->
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="div_center">
                     <h2>Chi tiết đơn hàng</h2>
                 </div>
                 <div class="row">
-                    <div class="col-md-5">
+                    <!-- Thông tin khách hàng -->
+                    <div class="col-md-5 mb-4">
                         <table class="table table-bordered">
                             <tr>
                                 <th>Họ tên</th>
-                                <td><%= order.name%></td>
+                                <td><%= order.name %></td>
                             </tr>
                             <tr>
                                 <th>Email</th>
-                                <td><%= order.email%></td>
+                                <td><%= order.email %></td>
                             </tr>
                             <tr>
                                 <th>Số điện thoại</th>
-                                <td><%= order.phone%></td>
+                                <td><%= order.phone %></td>
                             </tr>
                             <tr>
                                 <th>Địa chỉ</th>
-                                <td><%= order.address%></td>
+                                <td><%= order.address %></td>
                             </tr>
                         </table>
-                        <p>
-                            <a href="/order">Quay lại danh sách</a>
-                        </p>
+                        <a href="/order" class="btn-back">Quay lại danh sách</a>
                     </div>
+
+                    <!-- Chi tiết sản phẩm -->
                     <div class="col-md-7">
-                        <table class="table mb-0 align-middle text-nowrap table-responsive">
-                            <thead class="border">
+                        <table class="table table-bordered table-hover table-responsive">
+                            <thead>
                                 <tr>
-                                    <th class="border-top-0">STT</th>
-                                    <th class="border-top-0">Tên sản phẩm</th>
-                                    <th class="border-top-0">Ảnh</th>
-                                    <th class="border-top-0">Giá</th>
-                                    <th class="border-top-0">Số lượng</th>
-                                    <th class="border-top-0">Thành tiền</th>
+                                    <th>STT</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Ảnh</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
                                 </tr>
                             </thead>
-                            <tbody class="border">
-                                <% var total_money =0; var index=1; for(var detail of details) {%>
+                            <tbody>
+                                <% let total_money = 0, index = 1; for (let detail of details) { %>
                                 <tr>
-                                    <td><%= index++%></td>
-                                    <td><%= detail.product_id.title%></td>
-                                    <td><img src="<%= detail.product_id.image%>" style="height: 150px; width:150px; border:none;">
+                                    <td><%= index++ %></td>
+                                    <td><%= detail.product_id.title %></td>
+                                    <td>
+                                        <img src="<%= detail.product_id.image %>" alt="Product" style="height: 100px; width: 100px;">
                                     </td>
-                                    <td><%= numberFormat(detail.price)%></td>
-                                    <td><%= detail.num%></td>
-                                    <td><%= numberFormat(detail.total_money)%> VNĐ</td>
+                                    <td><%= numberFormat(detail.price) %> VNĐ</td>
+                                    <td><%= detail.num %></td>
+                                    <td><%= numberFormat(detail.total_money) %> VNĐ</td>
                                 </tr>
-                                <% total_money +=detail.total_money; }%>
+                                <% total_money += detail.total_money; } %>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><b>Tổng tiền</b></td>
-                                    <td><b><%= numberFormat(total_money)%> VNĐ</b></td>
+                                    <td colspan="4"></td>
+                                    <td><strong>Tổng tiền</strong></td>
+                                    <td><strong><%= numberFormat(total_money) %> VNĐ</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        <!-- end body -->
-        <!-- plugins:js -->
-        <%- include('script') %>
-        <!-- End custom js for this page -->
+
+            <!-- Scripts -->
+            <%- include('script') %>
+        </div>
     </div>
 </body>
 

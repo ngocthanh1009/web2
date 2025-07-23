@@ -4,16 +4,76 @@
 <head>
     <!-- Required meta tags -->
     <%- include('css') %>
-    <% path='product'%>
+    <% path='product' %>
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .div_center h1 {
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .table {
+            background-color: #ffffff;
+            border-collapse: collapse;
+        }
+
+        .table thead {
+            background-color: #f0f0f0;
+        }
+
+        .table th, .table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .btn-warning {
+            color: #fff;
+            background-color: #f0ad4e;
+            border: none;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border: none;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .alert {
+            margin: 15px 0;
+        }
+
+        .main-panel {
+            background-color: #fff;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
         <%- include('siderbar') %>
-        <!-- header-->
+        <!-- header -->
         <%- include('header') %>
-        <!-- End hear-->
+
         <!-- body -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -23,54 +83,54 @@
                         <%= message.content %>
                     </div>
                 <% } %>
+
                 <div class="div_center">
-                  <h1>Quản lý sản phẩm</h1>
-      
+                    <h1>Quản lý sản phẩm</h1>
                 </div>
-      
+
                 <table class="table mb-0 align-middle text-nowrap table-responsive">
-                      <thead class="border">
-                          <tr>
-                              <th class="border-top-0">STT</th>
-                              <th class="border-top-0">Tên sản phẩm</th>
-                              <th class="border-top-0">Hình ảnh</th>
-                              <th class="border-top-0">Danh mục</th>
-                              <th class="border-top-0">Giá</th>
-                              <th class="border-top-0">Giảm giá</th>
-                              <th class="border-top-0">Số lượng</th>
-                              <th class="border-top-0">Cập nhật lúc</th>
-                              <th class="border-top-0" style="width: 100px">Thao tác</th>
-                          </tr>
-                      </thead>
-                      <tbody class="border">
-                        <%  var index=1; for(let product of products) {%>
-                              <tr>
-                                  <td><%= index++%></td>
-                                  <td><%= product.title%></td>
-                                  <td><img src="<%= product.image%>" style="height:150px; width:150px; border-radius:0;"></td>
-                                  <td><%= product.category.name%></td>
-                                  <td><%= numberFormat(product.price)%> VNDC</td>
-                                  <td><%= numberFormat(product.discount_price)%> VNDC</td>
-                                  <td><%= product.quantity%></td>
-                                  <td><%= formatDate(product.updated_at)%></td>
-                                  <td>
-                                      <a href="/product/edit/<%= product._id%>" button class="btn btn-warning" style="margin-right:10px;">Sửa</a>
-                                      <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" href="/product/delete/<%= product._id%>"
-                                      class="btn btn-danger">Xóa</a>
-                                  </td>
-                              </tr>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Danh mục</th>
+                            <th>Giá</th>
+                            <th>Giảm giá</th>
+                            <th>Số lượng</th>
+                            <th>Cập nhật lúc</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var index = 1; for(let product of products) { %>
+                            <tr>
+                                <td><%= index++ %></td>
+                                <td><%= product.title %></td>
+                                <td>
+                                    <img src="<%= product.image %>" alt="Ảnh sản phẩm">
+                                </td>
+                                <td><%= product.category.name %></td>
+                                <td><%= numberFormat(product.price) %> VNĐ</td>
+                                <td><%= numberFormat(product.discount_price) %> VNĐ</td>
+                                <td><%= product.quantity %></td>
+                                <td><%= formatDate(product.updated_at) %></td>
+                                <td>
+                                    <a href="/product/edit/<%= product._id %>" class="btn btn-warning" style="margin-bottom: 5px;">Sửa</a>
+                                    <br />
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" href="/product/delete/<%= product._id %>" class="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
                         <% } %>
-                      </tbody>
-                  </table>
-      
+                    </tbody>
+                </table>
+
             </div>
-          </div>
         </div>
-        <!-- End body -->
-        <!-- plugins:js -->
-        <%- include('script') %>
-        <!-- End custom js for this page -->
     </div>
+
+    <!-- plugins:js -->
+    <%- include('script') %>
 </body>
 
 </html>
