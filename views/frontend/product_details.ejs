@@ -101,10 +101,10 @@
                      </li>
                   </ul>
                   <p style="color: red; font-size: 30px; margin-top: 15px; margin-bottom: 15px;">
-                    <%= (product.discount_price > 0) ? numberFormat(product.discount_price) : numberFormat(product.price) %> VNDC</p>
+                    <%= (product.discount_price > 0) ? numberFormat(product.discount_price) : numberFormat(product.price) %> VND</p>
                   <p
                      style="color: grey; font-size: 15px; margin-top: 15px; margin-bottom: 15px; text-decoration: line-through;">
-                     <del><%= numberFormat(product.price) %> VNDC</del>
+                     <del><%= numberFormat(product.price) %> VND</del>
                   </p>
                   <div class="d-flex flex-container">
                      <form id="quantity-form" style="display:inline-block;" action="/add_cart/<%= product._id%>" method="POST" ></form>
@@ -244,7 +244,7 @@
 
    function checkQuantity() {
       Swal.fire({
-         title: 'Xin lỗi 😭😭😭!',
+         title: "số lương hết rồi ",
          text: 'Số lượng sản phẩm không đủ để đáp ứng yêu cầu của bạn!',
          icon: 'warning',
          confirmButtonText: 'Đồng ý',
