@@ -4,7 +4,7 @@
    <base href="/public">
    <%- include('css') %>
    <script src="dist/sweetalert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+   <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
    <style>
       .evaluate{
          margin-left: 20px; 
@@ -21,7 +21,6 @@
       .card-inner {
         margin-left: 4rem;
       }
-
       .img-account-profile {
         height: 10rem;
         border: 1px solid #000;
@@ -34,7 +33,6 @@
             height: 10px;
             width: 70vw;
          }
-
          .allComment {
             padding-left: 20%;
             font-size: 20px;
@@ -68,7 +66,6 @@
 <body>
    <div class="hero_area">
     <%- include('header') %>
-
       <section class="product_section layout_padding">
          <div class="container">
             <div class="row">
@@ -92,7 +89,6 @@
                               </svg>
                     </li>
                      <% } %>
-
                      <li class="evaluate">
                         <%= replies.length+comments.length%> Đánh giá
                      </li>
@@ -139,7 +135,20 @@
                </div>
                <div class="col-md-12" style="margin-top: 50px;">
                   <h4>Mô tả sản phẩm</h4>
-                  <%- product.description %>
+                  <p><%= product.description %></p>
+                  <div>
+                     <p>Sản phẩm này được chế tác từ những vật liệu chất lượng cao, đảm bảo độ bền và hiệu suất vượt trội. Với thiết kế tinh tế và hiện đại, sản phẩm phù hợp cho cả sử dụng hàng ngày lẫn các dịp chuyên nghiệp. Được sản xuất với công nghệ tiên tiến, sản phẩm mang đến trải nghiệm sử dụng mượt mà và thoải mái, đáp ứng nhu cầu của mọi đối tượng khách hàng.</p>
+                     <ul>
+                        <li>Chất liệu cao cấp, bền bỉ theo thời gian, chống mài mòn và thân thiện với môi trường.</li>
+                        <li>Thiết kế công thái học, mang lại sự thoải mái tối đa khi sử dụng trong thời gian dài.</li>
+                        <li>Có sẵn trong nhiều màu sắc thời thượng, giúp bạn dễ dàng lựa chọn theo phong cách cá nhân.</li>
+                        <li>Dễ dàng vệ sinh và bảo trì, giữ cho sản phẩm luôn như mới sau thời gian dài sử dụng.</li>
+                        <li>Đi kèm chế độ bảo hành 12 tháng, đảm bảo sự an tâm tuyệt đối cho khách hàng.</li>
+                        <li>Phù hợp cho nhiều mục đích sử dụng: tại nhà, văn phòng, hoặc khi di chuyển.</li>
+                        <li>Thiết kế nhỏ gọn, dễ dàng mang theo, phù hợp với lối sống năng động.</li>
+                     </ul>
+                     <p>Cho dù bạn đang tìm kiếm một sản phẩm để nâng cao hiệu suất làm việc, tô điểm cho phong cách cá nhân hay đơn giản là muốn sở hữu một món đồ đáng tin cậy, sản phẩm này chắc chắn sẽ đáp ứng mọi kỳ vọng của bạn. Hãy trải nghiệm sự khác biệt với chất lượng và thiết kế đỉnh cao!</p>
+                  </div>
                </div>
                <div class="col-md-12">
                   <h4 style="text-align:center;">Sản phẩm liên quan</h4>
@@ -147,7 +156,8 @@
                <% for ( let item of productList) { %>
                <div class="col-sm-6 col-md-4 col-lg-4">
                   <div class="box">
-                     <div class="option_container">
+                     <div class="optio
+n_container">
                         <div class="options">
                            <a href="/product_details/<%=item.id%>" class="option1">
                             <%= item.title%>
@@ -165,36 +175,29 @@
                         <h5>
                             <%=item.title%>
                         </h5>
-
                         <% if(item.discount_price > 0) {%>
                         <h6 style="color:red;">
                         Giảm giá</br>
                         <%= numberFormat(item.discount_price)%>
                         </h6>
-                        
                         <h6 style="text-decoration:line-through;">
                         Giá gốc</br>
                         <%= numberFormat(item.price)%>
                         </h6>
                         <% } else {%>
-
                         <h6>
                         Giá</br>
                         <%= item.price%>
                         </h6>
-
                         <% } %>
                      </div>
                   </div>
                </div>
                <% } %>
-
             </div>
          </div>
       </section>
-
    </div>
-
    <!-- end client section -->
    <!-- comment section -->
    <%- include('comment_reply') %>
@@ -236,7 +239,6 @@
       if (num < 1) num = 1;
       document.querySelector('[name=quantity]').value = num;
    }
-
 
    function fixCartNum() {
       $('[name=quantity]').val(Math.abs($('[name=quantity]').val()));
@@ -281,7 +283,6 @@
          confirmButtonText: 'Đồng ý',
       })
    }
-
 </script>
 
 </html>
